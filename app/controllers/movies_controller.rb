@@ -15,6 +15,7 @@ class MoviesController < ApplicationController
   # GET /movies/new
   def new
     @movie = Movie.new
+    @movie.build_address
   end
 
   # GET /movies/1/edit
@@ -25,7 +26,6 @@ class MoviesController < ApplicationController
   # POST /movies.json
   def create
     @movie = Movie.new(movie_params)
-    @movie.build_address
 
     respond_to do |format|
       if @movie.save
@@ -70,6 +70,6 @@ class MoviesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def movie_params
-      params.require(:movie).permit(:title, :description, :duration, :director_id, :release_date, addresses_attributes: [:street, :apartment, :description, :zipcode])
+      params.require(:movie).permit(:title, :description, :duration, :director_id, :release_date, address_attributes: [:street, :apartment, :description, :zipcode])
     end
 end

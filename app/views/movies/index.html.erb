@@ -1,9 +1,10 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
 
-<h1>Movies</h1>
+  <h1>Movies</h1>
 
-<table>
-  <thead>
+  <table class="table">
+    <thead>
     <tr>
       <th>Title</th>
       <th>Description</th>
@@ -13,25 +14,27 @@
       <th>Address</th>
       <th colspan="3"></th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
+    <tbody>
     <% @movies.each do |movie| %>
       <tr>
         <td><%= movie.title %></td>
         <td><%= movie.description %></td>
         <td><%= movie.duration %></td>
-        <td><%= movie.director %></td>
-        <td><%= movie.release_date %></td>
-        <td><%= movie.address %></td>
+        <td><%= movie.director.first_name + ' ' + movie.director.last_name %></td>
+        <td><%= movie.release_date.to_date %></td>
+        <td><%= movie.address.street %></td>
         <td><%= link_to 'Show', movie %></td>
         <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
-        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', movie, method: :delete, data: {confirm: 'Are you sure?'} %></td>
       </tr>
     <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 
-<br>
+  <br>
 
-<%= link_to 'New Movie', new_movie_path %>
+  <%= link_to 'New Movie', new_movie_path, class: 'btn btn-default' %>
+</div>
+
