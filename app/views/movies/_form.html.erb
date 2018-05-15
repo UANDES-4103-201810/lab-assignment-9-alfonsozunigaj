@@ -28,7 +28,7 @@
 
   <div class="field">
     <%= form.label :director_id %>
-    <%= form.collection_select(:director_id, Director.all, :id, :first_name) %>  </div>
+    <%= form.collection_select(:director_id, Director.all, :id, :label_for_select, include_blank: true) %>  </div>
 
   <div class="field">
     <%= form.label :release_date %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180515125607) do
+ActiveRecord::Schema.define(version: 20180515214956) do
 
   create_table "actor_movies", force: :cascade do |t|
     t.string "role"
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(version: 20180515125607) do
     t.string "zipcode"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "movie_id"
+    t.index ["movie_id"], name: "index_addresses_on_movie_id"
   end
 
   create_table "categories", force: :cascade do |t|
