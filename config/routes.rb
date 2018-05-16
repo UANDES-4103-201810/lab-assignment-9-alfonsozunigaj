@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :actors
   resources :directors
 
+  root to: 'application#index'
+
   get '/persons/new', to: 'people#new'
   post '/persons/create', to: 'people#create'
   get '/persons/all', to: 'people#show_all'

@@ -1,5 +1,5 @@
 class PeopleController < ApplicationController
-  before_action :set_person, only: [:edit, :update, :destroy]
+  before_action :set_actor, only: [:edit, :update, :destroy]
 
   # GET /people
   # GET /people.json
@@ -33,9 +33,10 @@ class PeopleController < ApplicationController
   # POST /people
   # POST /people.json
   def create
-    role = actor_params[:role]
+    role = params[:type]
+    name = params[:first_name][:first_name]
     if role == 'actor'
-      @actor = Actor.new(actor_params)
+      @actor = Actor.new(first_name: params[:first_name][:first_name], last_name: params[:last_name][:last_name], birth_date: params[:birth_date][:birth_date], description: params[:description][:description])
       respond_to do |format|
         if @actor.save
           format.html { redirect_to @actor, notice: 'Actor was successfully created.' }
@@ -46,7 +47,7 @@ class PeopleController < ApplicationController
         end
       end
     else
-      @director = Director.new(actor_params)
+      @director = Director.new(first_name: params[:first_name][:first_name], last_name: params[:last_name][:last_name], birth_date: params[:birth_date][:birth_date], description: params[:description][:description])
       respond_to do |format|
         if @director.save
           format.html { redirect_to @director, notice: 'Director was successfully created.' }
@@ -85,12 +86,12 @@ class PeopleController < ApplicationController
 
   private
   # Use callbacks to share common setup or constraints between actions.
-  def set_person
+  def set_actor
     @actor = Actor.find(params[:id])
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def actor_params
-    params.require(:person).permit(:first_name, :last_name, :birth_date, :description, :role)
+    params.require(:actor).permit(:first_name, :last_name, :birth_date, :description)
   end
 end
