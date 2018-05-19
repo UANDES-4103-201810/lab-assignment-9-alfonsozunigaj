@@ -34,7 +34,6 @@ class PeopleController < ApplicationController
   # POST /people.json
   def create
     role = params[:type]
-    name = params[:first_name][:first_name]
     if role == 'actor'
       @actor = Actor.new(first_name: params[:first_name][:first_name], last_name: params[:last_name][:last_name], birth_date: params[:birth_date][:birth_date], description: params[:description][:description])
       respond_to do |format|
