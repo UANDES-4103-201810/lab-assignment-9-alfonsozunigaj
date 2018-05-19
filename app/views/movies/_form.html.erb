@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :description %>
-    <%= form.text_field :description, id: :movie_description %>
+    <%= form.text_area :description, id: :movie_description %>
   </div>
 
   <div class="field">
@@ -61,10 +61,26 @@
   <% end %>
 
   <h4>Actors and Actresses</h4>
-
-  <div class="field">
-    <%= form.collection_select :actor_id, Actor.order(:last_name), :id, :label_for_select, include_blank: true %>
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="field">
+        <%= form.collection_select :actor_id, Actor.order(:id), :id, :label_for_select, {include_blank: true}, {:id=>'collection_select_actors', onchange: 'add_to_list(this)'} %>
+      </div>
+    </div>
+    <div class="col-sm-5">
+      <table class="table">
+        <tbody id="actors_list">
+          <% ActorMovie.where(movie_id: @movie.id).each do |m| %>
+            <tr id="<%= m.actor_id %>_selected">
+              <td><%= m.actor.label_for_select %></td>
+              <td><button type="button" onclick="return remove_from_list(<%= m.actor_id %>)">Remove</button></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
   </div>
+
 
   <div class="actions">
     <%= form.submit %>

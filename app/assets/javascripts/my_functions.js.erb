@@ -1,0 +1,17 @@
+add_to_list = function (source) {
+    actors = <%= Actor.all.to_json %>
+    jQuery.each(actors, function (i, val) {
+        if(val.id == source.value){
+            source.options[source.value].hidden = true;
+            console.log(source.options[source.value])
+            var html_code = '<tr id="' + source.value + '_selected"><td>'+ val.first_name + ' ' + val.last_name + '</td><td><button type="button" onclick="return remove_from_list(' + source.value +' )">Remove</button></td></tr>';
+            $('#actors_list').append(html_code);
+            source.selectedIndex = 0;
+        }
+    });
+}
+
+remove_from_list = function (source) {
+    $('#'+source+'_selected').remove();
+    $('#collection_select_actors')[0][source].hidden = false;
+}

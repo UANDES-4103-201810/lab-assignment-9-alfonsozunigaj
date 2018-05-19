@@ -16,8 +16,8 @@
     <% @actor_movies.each do |actor_movie| %>
       <tr>
         <td><%= actor_movie.role %></td>
-        <td><%= actor_movie.actor %></td>
-        <td><%= actor_movie.movie %></td>
+        <td><%= actor_movie.actor.label_for_select %></td>
+        <td><%= actor_movie.movie.title %></td>
         <td><%= link_to 'Show', actor_movie %></td>
         <td><%= link_to 'Edit', edit_actor_movie_path(actor_movie) %></td>
         <td><%= link_to 'Destroy', actor_movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
