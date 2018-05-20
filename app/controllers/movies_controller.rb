@@ -26,9 +26,16 @@ class MoviesController < ApplicationController
   # POST /movies.json
   def create
     @movie = Movie.new(movie_params)
+    ids = params[:actors_ids]
 
     respond_to do |format|
       if @movie.save
+        actors = ids.split(',')
+        actors.each do |pk|
+          aux = ActorMovie.new(actor_id: pk, movie_id: @movie.id, role: 'TBD')
+          aux.save
+        end
+
         format.html { redirect_to @movie, notice: 'Movie was successfully created.' }
         format.json { render :show, status: :created, location: @movie }
       else
