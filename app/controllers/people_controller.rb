@@ -35,7 +35,7 @@ class PeopleController < ApplicationController
   def create
     role = params[:type]
     if role == 'actor'
-      @actor = Actor.new(first_name: params[:first_name][:first_name], last_name: params[:last_name][:last_name], birth_date: params[:birth_date][:birth_date], description: params[:description][:description])
+      @actor = Actor.new(first_name: params[:first_name], last_name: params[:last_name], birth_date: params[:birth_date], description: params[:description])
       respond_to do |format|
         if @actor.save
           format.html { redirect_to @actor, notice: 'Actor was successfully created.' }
@@ -46,7 +46,7 @@ class PeopleController < ApplicationController
         end
       end
     else
-      @director = Director.new(first_name: params[:first_name][:first_name], last_name: params[:last_name][:last_name], birth_date: params[:birth_date][:birth_date], description: params[:description][:description])
+      @director = Director.new(first_name: params[:first_name], last_name: params[:last_name], birth_date: params[:birth_date], description: params[:description])
       respond_to do |format|
         if @director.save
           format.html { redirect_to @director, notice: 'Director was successfully created.' }

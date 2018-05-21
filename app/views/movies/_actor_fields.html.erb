@@ -1,0 +1,12 @@
+<fieldset>
+  <%= f.label :first_name, "First Name" %><br />
+  <%= f.text_field :first_name %><br />
+  <%= f.label :last_name, "Last Name" %><br />
+  <%= f.text_field :last_name %><br />
+  <%= f.label :birth_date, "Date of Birth" %><br />
+  <%= f.date_field :birth_date %><br />
+  <%= f.label :description, "Description" %><br />
+  <%= f.text_area :description %><br />
+  <%= f.check_box :_destroy %>
+  <%= f.label :_destroy, "Remove Actor" %>
+</fieldset>

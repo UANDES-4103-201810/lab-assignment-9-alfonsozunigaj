@@ -48,8 +48,14 @@ class MoviesController < ApplicationController
   # PATCH/PUT /movies/1
   # PATCH/PUT /movies/1.json
   def update
+    ids = params[:actors_ids]
     respond_to do |format|
       if @movie.update(movie_params)
+        actors = ids.split(',')
+        actors.each do |pk|
+          aux = ActorMovie.new(actor_id: pk, movie_id: @movie.id, role: 'TBD')
+          aux.save
+        end
         format.html { redirect_to @movie, notice: 'Movie was successfully updated.' }
         format.json { render :show, status: :ok, location: @movie }
       else
